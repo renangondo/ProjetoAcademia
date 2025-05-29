@@ -1,4 +1,4 @@
 from django.views.generic import TemplateView
 
-class indexView(TemplateView):
-    template_name = 'paginas/modelo.html'
+class IndexView(TemplateView):
+    template_name = 'paginas/index.html'
