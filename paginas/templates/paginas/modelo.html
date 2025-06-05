@@ -19,24 +19,25 @@
     {% block header %}
     <header class="header">
         <div class="header-container">
- 
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#">Início</a></li>
+                    <li><a href="{% url 'index' %}">Início</a></li>
                     <li><a href="#">Alunos</a></li>
                     <li><a href="#">Sobre</a></li>
                 </ul>
             </nav>
-
         </div>
     </header>
     {% endblock %}
 
+    {% block conteudo %}
+    <!-- Conteúdo principal aqui -->
+    {% endblock %}
+
     {% block footer %}
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
-            <p>&copy; 2023 GymPro - Todos os direitos reservados</p>
+            <p>&copy; 2025 GymPro - Todos os direitos reservados</p>
         </div>
     </footer>
     {% endblock %}
