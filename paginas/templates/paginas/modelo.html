@@ -26,7 +26,7 @@
                     <h4>Principal</h4>
                     <ul>
                         <li class="active"><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
-                        <li><a href="#"><i class="fas fa-users"></i> Alunos</a></li>
+                        <li><a href="{% url "aluno_list" %}"><i class="fas fa-users"></i> Alunos</a></li>
                         <li><a href="#"><i class="fas fa-clipboard-list"></i> Treinos</a></li>
                     </ul>
                 </div>
@@ -36,7 +36,6 @@
                     <ul>
                         <li><a href="#"><i class="fas fa-calendar-alt"></i> Agenda</a></li>
                         <li><a href="#"><i class="fas fa-chart-line"></i> Progresso</a></li>
-                        <li><a href="#"><i class="fas fa-file-invoice-dollar"></i> Financeiro</a></li>
                     </ul>
                 </div>
             </nav>
@@ -58,7 +57,7 @@
                 <h1>Dashboard</h1>
                 {%endblock%}
                 <div class="search-bar">
-                    <input type="text" placeholder="Pesquisar aluno ou treino...">
+                    <input type="text" placeholder="Pesquisar aluno...">
                     <button><i class="fas fa-search"></i></button>
                 </div>
                 <div class="notifications">
