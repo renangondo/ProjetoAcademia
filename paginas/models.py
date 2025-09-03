@@ -5,7 +5,7 @@ from django.db import models
 STATUS = [
     ('Completo', 'Completo'),
     ('Pendente', 'Pendente'),
-    ('Em ndamento', 'Em Andamento'),
+    ('Em Andamento', 'Em Andamento'),
 ]
 
 
