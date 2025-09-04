@@ -480,6 +480,16 @@ table th {
     font-size: 1rem;
 }
 
+.btn-danger {
+    background-color:red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
 /* Responsividade */
 @media (max-width: 992px) {
     .content-grid {

@@ -1,0 +1,44 @@
+{% extends 'paginas/modelo.html' %}
+
+{% load static %}
+
+{% block titulo %}
+
+{% endblock %}
+
+{% block conteudo %}
+<h3>Listas de Estados:</h3>
+<br>
+
+<div>
+    <table class= "table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Sigla</th>
+            <th>Opeções</th>
+        </tr>
+
+        {% for estados in object_list%}
+        <tr>
+            <td>{{ estados.id }}</td>
+            <td>{{ estados.nome }}</td>
+            <td>{{ estados.sigla }}</td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'editar_estado' estados.id %}" title="Editar">Editar</a>
+                <a class="btn-danger" href="{% url 'excluir_estado' estados.id %}" title="Excluir">Deletar</a>
+            </td>
+        </tr>
+
+        {% empty %}
+        <tr>
+            <td>Nenhum Estado registrado.</td>
+        </tr>
+        {% endfor %}
+</table>
+
+</div>
+
+
+</form>
+{% endblock%}

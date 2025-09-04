@@ -1,0 +1,18 @@
+{% extends 'paginas/modelo.html' %}
+
+
+{%block titulo%}
+
+{%endblock%}
+
+{%block conteudo%}
+<h3>Preencha o formulário abaixo:</h3>
+<br>
+
+<form method="post">  <!--Envio do formulário via post -->
+    {% csrf_token %}  <!-- Proteção contra CSRF, se não tiver, dá erro 403 -->
+    {{ form.as_p }}   <!-- formulario produzido via paragrafo -->
+    <br>
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>
+{%endblock%}
