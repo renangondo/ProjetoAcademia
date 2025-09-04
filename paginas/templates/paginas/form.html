@@ -1,0 +1,20 @@
+{% extends 'paginas/modelo.html' %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block conteudo %}
+    <div class="form-container">
+        <div class="form-header">
+            <h1><i class="fas fa-user-plus"></i> Cadastro de {{nome}}</h1>
+            <p>Preencha os dados abaixo para cadastrar um novo aluno</p>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form }} 
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+    </div>
+{% endblock %}

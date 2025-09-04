@@ -7,7 +7,7 @@ from .models import Aluno
 # ListView - Exibe a lista de alunos
 class IndexView(TemplateView):
     template_name = 'paginas/index.html'
-    
+
 
 class AlunoListView(ListView):
     model = Aluno
