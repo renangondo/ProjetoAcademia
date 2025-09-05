@@ -21,4 +21,4 @@ class Medida(models.Model):
     data_medida = models.DateField(auto_now_add=True, verbose_name="Data da Medida")
 
     def __str__(self):
-        return f'Medida de {self.aluno.nome} em {self.data_medida}'
+        return f'Medida de {self.aluno} em {self.data_medida}'

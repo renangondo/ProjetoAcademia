@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'paginas.apps.PaginasConfig', # nomedoapp.apps.NomeDoAppConfig
     'usuarios.apps.UsuariosConfig',
     'treino.apps.TreinoConfig',
+    'medidas.apps.MedidasConfig',
     
     
     ]
