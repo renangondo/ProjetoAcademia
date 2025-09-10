@@ -1,5 +1,9 @@
 {% extends 'paginas/modelo.html' %}
 
+{% load static %}
+
+{% load crispy_forms_tags %}
+
 
 {%block titulo%}
 
@@ -11,7 +15,7 @@
 
 <form method="post">  <!--Envio do formulário via post -->
     {% csrf_token %}  <!-- Proteção contra CSRF, se não tiver, dá erro 403 -->
-    {{ form.as_p }}   <!-- formulario produzido via paragrafo -->
+    {{ form|crispy }}   <!-- formulario produzido via crispy -->
     <br>
     <button type="submit" class="btn btn-primary">Cadastrar</button>
 </form>
