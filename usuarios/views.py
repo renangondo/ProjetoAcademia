@@ -9,13 +9,16 @@ class EstadoCreate(CreateView):
     model = Estado # modelo que irá ser cadastrado
     fields = ['nome', 'sigla'] # campos do formulário, que serão exibidos
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('listar_estado')  # Redireciona para a lista de estados após o cadastro
+    # Redireciona para a lista de estados após o cadastro
+    success_url = reverse_lazy('listar_estado')
 
 
 class CidadeCreate(CreateView):
     model = Cidade
-    fields = ['nome', 'estado', 'sigla']
+    fields = ['nome', 'estado']
     template_name = 'cadastros/form.html'
+    success_url = reverse_lazy('listar_cidade')
+    
   
 
 
@@ -23,6 +26,7 @@ class AlunoCreate(CreateView):
     model = Aluno
     fields = ['nome', 'idade', 'telefone', 'email', 'objetivo', 'status', 'medidas', 'cidade']
     template_name = 'cadastros/form.html'
+    success_url = reverse_lazy('listar_aluno')
     
 
 class ProfessorCreate(CreateView):
@@ -36,12 +40,14 @@ class EstadoUpdate(UpdateView):
     model = Estado
     fields = ['nome', 'sigla']
     template_name = 'cadastros/form.html'
+    success_url = reverse_lazy('listar_estado')
 
 
 class CidadeUpdate(UpdateView):
     model = Cidade
-    fields = ['nome', 'estado', 'sigla']
+    fields = ['nome', 'estado']
     template_name = 'cadastros/form.html'
+    success_url = reverse_lazy('listar_cidade')
 
 
 class AlunoUpdate(UpdateView):
@@ -60,12 +66,12 @@ class ProfessorUpdate(UpdateView):
 class EstadoDelete(DeleteView):
     model = Estado
     template_name = 'cadastros/form-excluir.html'
-    # success_url = '/'  # Redireciona para a página inicial após a exclusão
+    success_url = reverse_lazy('listar_estado')
 
 class CidadeDelete(DeleteView):
     model = Cidade
     template_name = 'cadastros/form-excluir.html'
-    # success_url = '/'  # Redireciona para a página inicial após a exclusão
+    success_url = reverse_lazy('listar_cidade')
 
 class AlunoDelete(DeleteView):
     model = Aluno
@@ -82,6 +88,7 @@ class ProfessorDelete(DeleteView):
 class EstadoList(ListView):
     model = Estado
     template_name = 'cadastros/listas/estado.html'
+    
 
 class CidadeList(ListView):
     model = Cidade
