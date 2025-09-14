@@ -5,7 +5,6 @@ from usuarios.models import Aluno
 # Create your models here.
 class Medida(models.Model):
 
-    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE, verbose_name="Aluno")
     altura = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="Altura (m)")
     peso = models.DecimalField(max_digits=5, decimal_places=2, verbose_name="Peso (kg)")
     cintura = models.DecimalField(max_digits=5, decimal_places=2, verbose_name="Cintura (cm)")

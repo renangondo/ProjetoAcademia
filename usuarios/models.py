@@ -1,5 +1,7 @@
 from django.db import models
 
+from medidas.models import Medida
+
 
 
 # Create your models here.
@@ -32,6 +34,9 @@ class Aluno(models.Model):
     email = models.EmailField(verbose_name="Email do Aluno")
     objetivo = models.CharField(max_length=100, verbose_name="Objetivo do Aluno")
     status = models.BooleanField(default=True, verbose_name="Status do Aluno (Ativo/Inativo)")
+    medidas = models.ForeignKey(Medida, on_delete=models.PROTECT, blank=True, verbose_name="Medidas do Aluno")
+    login = models.CharField(max_length=20, verbose_name="Login do Aluno")
+    senha = models.CharField(max_length=20, verbose_name="Senha do Aluno")
     cidade = models.ForeignKey(Cidade, on_delete=models.PROTECT, verbose_name="Cidade do Aluno")
 
     def __str__(self):
@@ -44,6 +49,7 @@ class Professor(models.Model):
     cpf = models.CharField(max_length=11, verbose_name="CPF do Professor")
     login = models.CharField(max_length=20, verbose_name="Login do Professor")
     senha = models.CharField(max_length=20, verbose_name="Senha do Professor")
+    aluno = models.ManyToManyField(Aluno, on_delete=models.PROTECT, blank=True, verbose_name="Alunos do Professor")
     cidade = models.ForeignKey(Cidade, on_delete=models.PROTECT, verbose_name="Cidade do Professor")
 
     def __str__(self):
