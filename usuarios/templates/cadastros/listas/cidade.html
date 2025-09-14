@@ -1,0 +1,42 @@
+{% extends 'paginas/modelo.html' %}
+
+{% load static %}
+
+{% block titulo %}
+
+{% endblock %}
+
+{% block conteudo %}
+<h3>Listas de Cidade:</h3>
+<br>
+
+<div>
+    <table class= "table table-striped">
+        <tr>
+            <th>Nome</th>
+            <th>Estado</th>
+        </tr>
+
+        {% for cidade in object_list%}
+        <tr>
+            <td>{{ cidade.id }}</td>
+            <td>{{ cidade.nome }}</td>
+            <td>{{ cidade.estado }}</td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'editar_cidade' cidade.id %}" title="Editar">Editar</a>
+                <a class="btn-danger" href="{% url 'excluir_cidade' cidade.id %}" title="Excluir">Deletar</a>
+            </td>
+        </tr>
+
+        {% empty %}
+        <tr>
+            <td>Nenhuma Cidade registrado.</td>
+        </tr>
+        {% endfor %}
+</table>
+
+</div>
+
+
+</form>
+{% endblock%}
