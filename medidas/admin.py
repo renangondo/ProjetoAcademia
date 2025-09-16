@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from medidas.models import Medida
+from medidas.models import Medidas
 
 # Register your models here.
 
-admin.site.register(Medida)
+admin.site.register(Medidas)

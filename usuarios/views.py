@@ -24,7 +24,7 @@ class CidadeCreate(CreateView):
 
 class AlunoCreate(CreateView):
     model = Aluno
-    fields = ['nome', 'idade', 'telefone', 'email', 'objetivo', 'status', 'medidas', 'cidade']
+    fields = ['nome', 'idade', 'telefone', 'email','login', 'senha','objetivo','cidade', 'status']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar_aluno')
     
@@ -52,7 +52,7 @@ class CidadeUpdate(UpdateView):
 
 class AlunoUpdate(UpdateView):
     model = Aluno
-    fields = ['nome', 'idade', 'telefone', 'email', 'objetivo', 'status', 'medidas', 'cidade']
+    fields = ['nome', 'idade', 'telefone', 'email', 'objetivo', 'cidade', 'status']
     template_name = 'cadastros/form.html'
 
 

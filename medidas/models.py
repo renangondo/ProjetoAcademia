@@ -1,9 +1,8 @@
 from django.db import models
 
-from usuarios.models import Aluno
 
 # Create your models here.
-class Medida(models.Model):
+class Medidas(models.Model):
 
     altura = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="Altura (m)")
     peso = models.DecimalField(max_digits=5, decimal_places=2, verbose_name="Peso (kg)")
@@ -20,4 +19,4 @@ class Medida(models.Model):
     data_medida = models.DateField(auto_now_add=True, verbose_name="Data da Medida")
 
     def __str__(self):
-        return f'Medida de {self.aluno} em {self.data_medida}'
+        return f'Data de {self.data_medida}'
