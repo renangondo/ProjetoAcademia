@@ -1,6 +1,5 @@
 from django.db import models
-
-from medidas.models import Medidas
+from django.utils import timezone
 
 
 
@@ -38,8 +37,8 @@ class Aluno(models.Model):
     telefone = models.CharField(max_length=10, verbose_name="Telefone do Aluno")
     email = models.EmailField(verbose_name="Email do Aluno")
     objetivo = models.CharField(max_length=400, verbose_name="Objetivo do Aluno")
+    data_criacao = models.DateField(default=timezone.now, verbose_name="Data de Criação")
     status = models.CharField(max_length=12,choices=STATUS,default='Pendente', null=True)
-    medidas = models.ForeignKey(Medidas, on_delete=models.PROTECT, blank=True, verbose_name="Medidas do Aluno", null=True)
     login = models.CharField(max_length=20, verbose_name="Login do Aluno", null=True)
     senha = models.CharField(max_length=20, verbose_name="Senha do Aluno", null=True)
     cidade = models.ForeignKey(Cidade, on_delete=models.PROTECT, verbose_name="Cidade do Aluno")

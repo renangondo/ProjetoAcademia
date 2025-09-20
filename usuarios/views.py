@@ -24,7 +24,7 @@ class CidadeCreate(CreateView):
 
 class AlunoCreate(CreateView):
     model = Aluno
-    fields = ['nome', 'idade', 'telefone', 'email','login', 'senha','objetivo','cidade', 'status']
+    fields = ['nome', 'idade', 'telefone', 'data_criacao','email','login', 'senha','objetivo','cidade', 'status']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar_aluno')
     

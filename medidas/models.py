@@ -1,5 +1,7 @@
 from django.db import models
 
+from paginas.models import Aluno
+
 
 # Create your models here.
 class Medidas(models.Model):
@@ -17,6 +19,7 @@ class Medidas(models.Model):
     peito = models.DecimalField(max_digits=5, decimal_places=2, verbose_name="Peito (cm)")
     largura_ombros = models.DecimalField(max_digits=5, decimal_places=2, verbose_name="Largura dos Ombros (cm)")
     data_medida = models.DateField(auto_now_add=True, verbose_name="Data da Medida")
+    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'Data de {self.data_medida}'
+        return f'Aluno {self.aluno} Data {self.data_medida}'

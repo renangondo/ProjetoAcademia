@@ -1,0 +1,101 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+
+
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/aluno_form.css' %}">
+{% endblock %}
+
+{% block conteudo %}
+       <div class="content-grid">
+                <section class="recent-trainings">
+                    <h2>Listas de alunos</h2>
+                    <div class="table-container">
+                        <table>
+                                <tr>
+                                    <th>Aluno</th>
+                                    <th>Data</th>
+                                    <th>Status</th>
+                                </tr>
+
+                             {% for aluno in object_list %}
+        <tr>
+            <td>{{ aluno.nome }}</td>
+            <td>{{ aluno.data_criacao }}</td>
+            <td>{{ aluno.status }}</td>
+                        <td>{{ aluno.status }}</td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-gear"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>     <a href="{% url 'aluno_edit' object.id %}" class="btn-edit">
+                    <i class="fas fa-edit"></i> Editar
+                  </a></li>
+                        <li><a class="dropdown-item link-danger" href=""><i class="bi bi-trash"></i> Excluir</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Nenhum registro encontrado.</td>
+        </tr>
+        {% endfor %}
+                        </table>
+                    </div>
+                </section>
+                
+                <section class="quick-actions">
+                    <h2>Ações Rápidas</h2>
+                    <div class="actions-grid">
+                        <a class="action-card" href="{% url "cadastrar_aluno" %}">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Novo Aluno</span>
+                        </a>
+                        <button class="action-card">
+                            <i class="fas fa-clipboard"></i>
+                            <span>Criar Treino</span>
+                        </button>
+                        <button class="action-card">
+                            <i class="fas fa-calendar-plus"></i>
+                            <span>Agendar Exame</span>
+                        </button>
+                        <button class="action-card">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Relatórios</span>
+                        </button>
+                    </div>
+                    
+                    <div class="upcoming-sessions">
+                        <h3>Próximas Sessões</h3>
+                        <div class="session-item">
+                            <div class="session-time">10:00</div>
+                            <div class="session-info">
+                                <strong>Ana Oliveira</strong>
+                                <span>Treino Superior</span>
+                            </div>
+                            <button class="session-action"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                        <div class="session-item">
+                            <div class="session-time">14:30</div>
+                            <div class="session-info">
+                                <strong>Marcos Santos</strong>
+                                <span>Avaliação Física</span>
+                            </div>
+                            <button class="session-action"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                        <div class="session-item">
+                            <div class="session-time">16:00</div>
+                            <div class="session-info">
+                                <strong>Juliana Costa</strong>
+                                <span>Treino Full Body</span>
+                            </div>
+                            <button class="session-action"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+{% endblock %}
