@@ -26,7 +26,7 @@ class AlunoCreate(CreateView):
     model = Aluno
     fields = ['nome', 'idade', 'telefone', 'data_criacao','email','login', 'senha','objetivo','cidade', 'status']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('listar_aluno')
+    success_url = reverse_lazy('listar_alunos')
     
 
 class ProfessorCreate(CreateView):
@@ -54,6 +54,7 @@ class AlunoUpdate(UpdateView):
     model = Aluno
     fields = ['nome', 'idade', 'telefone', 'email', 'objetivo', 'cidade', 'status']
     template_name = 'cadastros/form.html'
+    success_url = reverse_lazy('listar_alunos')
 
 
 class ProfessorUpdate(UpdateView):
@@ -76,7 +77,7 @@ class CidadeDelete(DeleteView):
 class AlunoDelete(DeleteView):
     model = Aluno
     template_name = 'cadastros/form-excluir.html'
-    # success_url = '/'  # Redireciona para a página inicial após a exclusão
+    success_url = reverse_lazy('listar_alunos')
 
 class ProfessorDelete(DeleteView):
     model = Professor

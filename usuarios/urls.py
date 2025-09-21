@@ -23,7 +23,7 @@ urlpatterns = [
 
     path('listar/estado/', EstadoList.as_view(), name='listar_estado'),
     path('listar/cidade/', CidadeList.as_view(), name='listar_cidade'),
-    path('listar/aluno/', AlunoList.as_view(), name='listar_aluno'),
+    path('listar/aluno/', AlunoList.as_view(), name='listar_alunos'),
     path('listar/professor/', ProfessorList.as_view(), name='listar_professor'),
 
 ]

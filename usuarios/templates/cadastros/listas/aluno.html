@@ -24,17 +24,15 @@
             <td>{{ aluno.nome }}</td>
             <td>{{ aluno.data_criacao }}</td>
             <td>{{ aluno.status }}</td>
-                        <td>{{ aluno.status }}</td>
+            <td>{{ aluno.status }}</td>
             <td>
                 <div class="dropdown">
                     <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-gear"></i>
                     </button>
                     <ul class="dropdown-menu">
-                        <li>     <a href="{% url 'aluno_edit' object.id %}" class="btn-edit">
-                    <i class="fas fa-edit"></i> Editar
-                  </a></li>
-                        <li><a class="dropdown-item link-danger" href=""><i class="bi bi-trash"></i> Excluir</a></li>
+                        <li><a href="{% url 'editar_aluno' aluno.id %}"><i class="bi bi-pencil"></i> Editar</a></li>
+                        <li><a class="dropdown-item link-danger" href="{% url 'excluir_aluno' aluno.id %}"><i class="bi bi-trash"></i> Excluir</a></li>
                     </ul>
                 </div>
             </td>
@@ -69,33 +67,4 @@
                         </button>
                     </div>
                     
-                    <div class="upcoming-sessions">
-                        <h3>Próximas Sessões</h3>
-                        <div class="session-item">
-                            <div class="session-time">10:00</div>
-                            <div class="session-info">
-                                <strong>Ana Oliveira</strong>
-                                <span>Treino Superior</span>
-                            </div>
-                            <button class="session-action"><i class="fas fa-ellipsis-v"></i></button>
-                        </div>
-                        <div class="session-item">
-                            <div class="session-time">14:30</div>
-                            <div class="session-info">
-                                <strong>Marcos Santos</strong>
-                                <span>Avaliação Física</span>
-                            </div>
-                            <button class="session-action"><i class="fas fa-ellipsis-v"></i></button>
-                        </div>
-                        <div class="session-item">
-                            <div class="session-time">16:00</div>
-                            <div class="session-info">
-                                <strong>Juliana Costa</strong>
-                                <span>Treino Full Body</span>
-                            </div>
-                            <button class="session-action"><i class="fas fa-ellipsis-v"></i></button>
-                        </div>
-                    </div>
-                </section>
-            </div>
 {% endblock %}
