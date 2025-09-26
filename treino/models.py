@@ -11,6 +11,10 @@ class Treino(models.Model):
     data_fim = models.DateField(verbose_name="Data de Fim", null=True, blank=True)
     descricao = models.TextField(verbose_name="Descrição do Treino")
 
+    cadastrado_em = models.DateTimeField(auto_now_add=True, verbose_name="Cadastrado em")
+    cadastrado_por = models.ForeignKey('auth.User', on_delete=models.PROTECT, verbose_name="Cadastrado por", related_name='treinos_principais_cadastrados')
+
+
     def __str__(self):
         return f'{self.nome_treino} - {self.aluno}'
 # ------------------------------------------------------------------------------    
@@ -37,5 +41,11 @@ class ExercicioTreino(models.Model):
     series = models.PositiveIntegerField(verbose_name="Número de Séries")
     repeticoes = models.PositiveIntegerField(verbose_name="Número de Repetições")
 
+    cadastrado_em = models.DateTimeField(auto_now_add=True, verbose_name="Cadastrado em")
+    cadastrado_por = models.ForeignKey('auth.User', on_delete=models.PROTECT, verbose_name="Cadastrado por", related_name='exercicios_treinos_cadastrados')
+
     def __str__(self):
         return f'{self.exercicio.nome} no treino {self.treino.nome_treino}'
+    
+
+    ## fazer o p

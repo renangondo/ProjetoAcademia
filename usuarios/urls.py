@@ -4,6 +4,7 @@ from .views import EstadoCreate, CidadeCreate, AlunoCreate, ProfessorCreate
 from .views import AlunoUpdate, CidadeUpdate, EstadoUpdate, ProfessorUpdate
 from .views import EstadoDelete, CidadeDelete, AlunoDelete, ProfessorDelete
 from .views import EstadoList, CidadeList, AlunoList, ProfessorList
+from .views_usuario import AlunoUserCreate, ProfessorUserCreate
 
 urlpatterns = [
     path('cadastrar/estado/', EstadoCreate.as_view(), name='cadastrar_estado'),
@@ -26,4 +27,7 @@ urlpatterns = [
     path('listar/aluno/', AlunoList.as_view(), name='listar_alunos'),
     path('listar/professor/', ProfessorList.as_view(), name='listar_professor'),
 
+    # URLs de registro de usuários
+    path('registro/aluno/', AlunoUserCreate.as_view(), name='registro_aluno'),
+    path('registro/professor/', ProfessorUserCreate.as_view(), name='registro_professor'),
 ]

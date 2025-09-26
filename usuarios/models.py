@@ -31,18 +31,17 @@ class Aluno(models.Model):
     STATUS = [('Ativo', 'Ativo'),('Inativo', 'Inativo'),('Pendente', 'Pendente'),
 ]
 
-
     nome = models.CharField(max_length=120, verbose_name="Nome do Aluno")
     idade = models.IntegerField(verbose_name="Idade do Aluno")
+    cpf = models.CharField(max_length=11, verbose_name="CPF do Aluno", unique=True)
     telefone = models.CharField(max_length=10, verbose_name="Telefone do Aluno")
-    email = models.EmailField(verbose_name="Email do Aluno")
     objetivo = models.CharField(max_length=400, verbose_name="Objetivo do Aluno")
-    data_criacao = models.DateField(default=timezone.now, verbose_name="Data de Criação")
-    status = models.CharField(max_length=12,choices=STATUS,default='Pendente', null=True)
-    login = models.CharField(max_length=20, verbose_name="Login do Aluno", null=True)
-    senha = models.CharField(max_length=20, verbose_name="Senha do Aluno", null=True)
+    data_criacao = models.DateField(auto_now_add=True, verbose_name="Data de Criação")
+    status = models.CharField(max_length=12,choices=STATUS,default='Ativo')
     cidade = models.ForeignKey(Cidade, on_delete=models.PROTECT, verbose_name="Cidade do Aluno")
     sexo = models.CharField(max_length=10, verbose_name="Sexo do Aluno", choices=SEXO, default='Outros')
+
+    usuario = models.ForeignKey('auth.User', on_delete=models.PROTECT, verbose_name="Usuário do Aluno", related_name='alunos_cadastrados')
 
     def __str__(self):
         return f'{self.nome}'
@@ -50,12 +49,11 @@ class Aluno(models.Model):
 
 class Professor(models.Model):
     nome = models.CharField(max_length=120, verbose_name="Nome do Professor")
-    email = models.EmailField(verbose_name="Email do Professor")
     cpf = models.CharField(max_length=11, verbose_name="CPF do Professor")
-    login = models.CharField(max_length=20, verbose_name="Login do Professor", null=True)
-    senha = models.CharField(max_length=20, verbose_name="Senha do Professor", null=True)
     aluno = models.ForeignKey(Aluno, on_delete=models.PROTECT, blank=True, verbose_name="Alunos do Professor", null=True)
     cidade = models.ForeignKey(Cidade, on_delete=models.PROTECT, verbose_name="Cidade do Professor")
+
+    usuario = models.ForeignKey('auth.User', on_delete=models.PROTECT, verbose_name="Usuário do Professor", related_name='professores_cadastrados')
 
     def __str__(self):
         return f'{self.nome}'

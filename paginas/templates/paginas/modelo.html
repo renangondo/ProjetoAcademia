@@ -27,17 +27,34 @@
                 <div class="menu-section">
                     <h4>Principal</h4>
                     <ul>
-                        <li class="active"><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
-                        <li><a href="{% url "listar_alunos" %}"><i class="fas fa-users"></i> Alunos</a></li>
-                        <li><a href="#"><i class="fas fa-clipboard-list"></i> Treinos</a></li>
+                        <li><a href="{% url 'index' %}"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="{% url 'listar_alunos' %}"><i class="fas fa-users"></i> Alunos</a></li>
+                        <li><a href="{% url 'listar_professor' %}"><i class="fas fa-chalkboard-teacher"></i> Professores</a></li>
                     </ul>
                 </div>
                 
                 <div class="menu-section">
-                    <h4>Ferramentas</h4>
+                    <h4>Cadastros</h4>
                     <ul>
-                        <li><a href="#"><i class="fas fa-calendar-alt"></i> Agenda</a></li>
-                        <li><a href="#"><i class="fas fa-chart-line"></i> Progresso</a></li>
+                        <li><a href="{% url 'cadastrar_aluno' %}"><i class="fas fa-user-plus"></i> Novo Aluno</a></li>
+                        <li><a href="{% url 'cadastrar_professor' %}"><i class="fas fa-user-tie"></i> Novo Professor</a></li>
+                        <li><a href="{% url 'cadastrar_medidas' %}"><i class="fas fa-ruler"></i> Medidas</a></li>
+                    </ul>
+                </div>
+
+                <div class="menu-section">
+                    <h4>Configurações</h4>
+                    <ul>
+                        <li><a href="{% url 'cadastrar_estado' %}"><i class="fas fa-map"></i> Estados</a></li>
+                        <li><a href="{% url 'cadastrar_cidade' %}"><i class="fas fa-city"></i> Cidades</a></li>
+                    </ul>
+                </div>
+
+                <div class="menu-section">
+                    <h4>Registro de Usuários</h4>
+                    <ul>
+                        <li><a href="{% url 'registro_aluno' %}"><i class="fas fa-user-graduate"></i> Novo Aluno</a></li>
+                        <li><a href="{% url 'registro_professor' %}"><i class="fas fa-user-shield"></i> Novo Professor</a></li>
                     </ul>
                 </div>
             </nav>

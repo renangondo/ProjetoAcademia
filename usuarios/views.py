@@ -20,18 +20,16 @@ class CidadeCreate(CreateView):
     success_url = reverse_lazy('listar_cidade')
     
   
-
-
 class AlunoCreate(CreateView):
     model = Aluno
-    fields = ['nome', 'idade', 'telefone', 'data_criacao','email','login', 'senha','objetivo','cidade', 'status']
+    fields = ['nome','cpf' , 'idade', 'telefone',  'objetivo', 'cidade', 'status']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar_alunos')
     
 
 class ProfessorCreate(CreateView):
     model = Professor
-    fields = ['nome', 'email', 'cpf', 'login', 'senha', 'cidade']
+    fields = ['nome', 'cpf', 'cidade']
     template_name = 'cadastros/form.html'
     
 ###################### UPDATE  ###########################################################################
@@ -52,14 +50,14 @@ class CidadeUpdate(UpdateView):
 
 class AlunoUpdate(UpdateView):
     model = Aluno
-    fields = ['nome', 'idade', 'telefone', 'email', 'objetivo', 'cidade', 'status']
+    fields = ['nome', 'cpf','idade', 'telefone', 'objetivo', 'cidade', 'status']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar_alunos')
 
 
 class ProfessorUpdate(UpdateView):
     model = Professor
-    fields = ['nome', 'email', 'cpf', 'login', 'senha', 'cidade']
+    fields = ['nome', 'cpf', 'cidade']
     template_name = 'cadastros/form.html'
 
 ###################### DELETE  ###########################################################################
