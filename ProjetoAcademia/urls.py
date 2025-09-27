@@ -8,4 +8,5 @@ urlpatterns = [
     path('', include('paginas.urls')),
     path('' , include('usuarios.urls')),
     path('', include('medidas.urls')),
+    path('', include('treino.urls')),
 ]
