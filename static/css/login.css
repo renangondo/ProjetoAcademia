@@ -1,4 +1,8 @@
 body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: #f5f6fa;
     font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
@@ -7,10 +11,10 @@ body {
 
 .login-container {
     background: #fff;
-    max-width: 350px;
-    margin: 80px auto;
-    padding: 32px 24px;
-    border-radius: 8px;
+    max-width: 600px; /* aumente conforme desejar */
+    width: 100%;
+    padding: 48px 32px;
+    border-radius: 12px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.08);
     text-align: center;
 }
