@@ -5,14 +5,20 @@
     <meta charset="UTF-8">
     <title>Login - Projeto Academia</title>
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
     <div class="login-container">
-        <h2>Entrar no sistema</h2>
+        <div class="academia-logo">
+            <i class="fas fa-dumbbell"></i>
+        </div>
+        <h2>Bem vindo a RGN!</h2>
+        <p class="academia-slogan">Seja diferente dos outros</p>
         <form method="post">
             {% csrf_token %}
+            <input type="hidden" name="next" value="/home/" />
             {{ form.as_p }}
-            <button type="submit">Entrar</button>
+            <button type="submit"><i class="fas fa-sign-in-alt"></i> Entrar</button>
         </form>
         {% if form.errors %}
             <div class="error">

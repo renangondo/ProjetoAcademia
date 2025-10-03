@@ -5,7 +5,7 @@ from .views import IndexView, AlunoListView, AlunoCreateView, AlunoUpdateView, A
 # path('endereço', minhaView.as_view(), name='nome_da_view')
 
 urlpatterns = [
-    path('', IndexView.as_view(), name='index'),
+    path('home/', IndexView.as_view(), name='index'),
     path('list/', AlunoListView.as_view(), name='aluno_list'),
     path('novo/', AlunoCreateView.as_view(), name='aluno_create'),
     path('editar/<int:pk>/', AlunoUpdateView.as_view(), name='aluno_edit'),

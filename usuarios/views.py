@@ -1,5 +1,6 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Estado, Cidade, Aluno, Professor
+from django.contrib.auth.models import User
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 
@@ -25,7 +26,24 @@ class AlunoCreate(CreateView):
     fields = ['nome','cpf' , 'idade', 'telefone',  'objetivo', 'cidade', 'status']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar_alunos')
-    
+
+    def form_valid(self, form):
+
+        try: 
+            # Criação de um usuário para o aluno aonde o nome de usuário  a senha será o CPF sem mascaras
+            import re
+            cpf_clean = re.sub(r'\D', '', form.instance.cpf)  # Remove qualquer caractere
+            usuario = User.objects.create_user(username=cpf_clean, password=cpf_clean)
+        except:
+            form.add_error('cpf', 'Erro ao criar usuário. Verifique se o CPF já está cadastrado.')
+            return self.form_invalid(form)
+
+        form.instance.usuario = usuario
+        form.instance.professor = self.request.user
+
+        url =  super().form_valid(form)
+
+        return url
 
 class ProfessorCreate(CreateView):
     model = Professor
@@ -50,7 +68,7 @@ class CidadeUpdate(UpdateView):
 
 class AlunoUpdate(UpdateView):
     model = Aluno
-    fields = ['nome', 'cpf','idade', 'telefone', 'objetivo', 'cidade', 'status']
+    fields = ['nome', 'cpf','idade', 'telefone', 'objetivo', 'cidade', 'status', 'professor']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar_alunos')
 

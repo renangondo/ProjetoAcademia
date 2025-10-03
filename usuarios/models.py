@@ -41,7 +41,8 @@ class Aluno(models.Model):
     cidade = models.ForeignKey(Cidade, on_delete=models.PROTECT, verbose_name="Cidade do Aluno")
     sexo = models.CharField(max_length=10, verbose_name="Sexo do Aluno", choices=SEXO, default='Outros')
 
-    usuario = models.ForeignKey('auth.User', on_delete=models.PROTECT, verbose_name="Usuário do Aluno", related_name='alunos_cadastrados')
+    professor = models.ForeignKey('auth.User', on_delete=models.PROTECT, verbose_name="Professor do Aluno", related_name='meus_alunos')
+    usuario = models.OneToOneField('auth.User', on_delete=models.PROTECT, verbose_name="Usuário do Aluno", related_name='perfi_aluno')
 
     def __str__(self):
         return f'{self.nome}'
@@ -50,7 +51,6 @@ class Aluno(models.Model):
 class Professor(models.Model):
     nome = models.CharField(max_length=120, verbose_name="Nome do Professor")
     cpf = models.CharField(max_length=11, verbose_name="CPF do Professor")
-    aluno = models.ForeignKey(Aluno, on_delete=models.PROTECT, blank=True, verbose_name="Alunos do Professor", null=True)
     cidade = models.ForeignKey(Cidade, on_delete=models.PROTECT, verbose_name="Cidade do Professor")
 
     usuario = models.ForeignKey('auth.User', on_delete=models.PROTECT, verbose_name="Usuário do Professor", related_name='professores_cadastrados')
