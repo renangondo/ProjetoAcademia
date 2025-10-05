@@ -1,0 +1,125 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f5f6fa;
+    color: #2d3436;
+}
+
+.navbar {
+    background: #0984e3;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links li a:hover {
+    color: #dfe6e9;
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 24px 48px 24px;
+    background: #fff;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 32px;
+}
+
+.cta-btn {
+    background: #0984e3;
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.cta-btn:hover {
+    background: #74b9ff;
+}
+
+.sobre, .contato {
+    max-width: 700px;
+    margin: 48px auto;
+    background: #fff;
+    padding: 32px 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.sobre h2, .contato h2 {
+    margin-top: 0;
+    color: #0984e3;
+}
+
+.contato form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contato input, .contato textarea {
+    padding: 10px;
+    border: 1px solid #dfe6e9;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.contato button {
+    background: #0984e3;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+
+.contato button:hover {
+    background: #74b9ff;
+}
+
+footer {
+    text-align: center;
+    padding: 24px 0;
+    background: #0984e3;
+    color: #fff;
+    margin-top: 48px;
+}

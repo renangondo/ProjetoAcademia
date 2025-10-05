@@ -25,6 +25,19 @@ class Cidade(models.Model):
 
 # -----------------------------------------------------------------------------------------------------------
 
+
+
+class Professor(models.Model):
+    nome = models.CharField(max_length=120, verbose_name="Nome do Professor")
+    cpf = models.CharField(max_length=11, verbose_name="CPF do Professor")
+    cidade = models.ForeignKey(Cidade, on_delete=models.PROTECT, verbose_name="Cidade do Professor")
+
+    usuario = models.ForeignKey('auth.User', on_delete=models.PROTECT, verbose_name="Usuário do Professor", related_name='professores_cadastrados')
+
+    def __str__(self):
+        return f'{self.nome}'
+# -----------------------------------------------------------------------------------------
+
 class Aluno(models.Model):
 
     SEXO = [('Masculino', 'Masculino'), ('Feminino', 'Feminino'), ('Outro', 'Outro')]
@@ -48,13 +61,5 @@ class Aluno(models.Model):
         return f'{self.nome}'
 # -----------------------------------------------------------------------------------------------------------
 
-class Professor(models.Model):
-    nome = models.CharField(max_length=120, verbose_name="Nome do Professor")
-    cpf = models.CharField(max_length=11, verbose_name="CPF do Professor")
-    cidade = models.ForeignKey(Cidade, on_delete=models.PROTECT, verbose_name="Cidade do Professor")
 
-    usuario = models.ForeignKey('auth.User', on_delete=models.PROTECT, verbose_name="Usuário do Professor", related_name='professores_cadastrados')
 
-    def __str__(self):
-        return f'{self.nome}'
-# -----------------------------------------------------------------------------------------

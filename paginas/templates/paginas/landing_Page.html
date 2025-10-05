@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Projeto Academia - Bem-vindo</title>
+    <link rel="stylesheet" href="{% static 'css/landing_page.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-dumbbell"></i> Projeto Academia
+        </div>
+        <ul class="nav-links">
+            <li><a href="/login/">Login</a></li>
+            <li><a href="/registro/aluno/">Cadastro</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#contato">Fale conosco</a></li>
+        </ul>
+    </nav>
+    <header class="hero">
+        <h1>Bem-vindo ao Projeto Academia</h1>
+        <p>Gerencie treinos, alunos e professores de forma simples e eficiente.</p>
+        <a href="/registro/aluno/" class="cta-btn">Comece agora</a>
+    </header>
+    <section id="sobre" class="sobre">
+        <h2>Sobre</h2>
+        <p>Nosso sistema foi desenvolvido para facilitar o controle de treinos, alunos e professores em academias. Tenha tudo organizado em um só lugar!</p>
+    </section>
+    <section id="contato" class="contato">
+        <h2>Fale conosco</h2>
+        <form>
+            <input type="text" placeholder="Seu nome" required>
+            <input type="email" placeholder="Seu e-mail" required>
+            <textarea placeholder="Sua mensagem" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2025 Projeto Academia. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

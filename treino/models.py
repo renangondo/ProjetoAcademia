@@ -48,4 +48,3 @@ class ExercicioTreino(models.Model):
         return f'{self.exercicio.nome} no treino {self.treino.nome_treino}'
     
 
-    ## fazer o p

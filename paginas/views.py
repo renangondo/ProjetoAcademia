@@ -9,34 +9,45 @@ class IndexView(TemplateView):
     template_name = 'paginas/index.html'
 
 
-class AlunoListView(ListView):
-    model = Aluno
-    template_name = 'paginas/formularioTemplate.html'
-    context_object_name = 'alunos'
+
+class LandingPageView(TemplateView):
+    template_name = 'paginas/landing_page.html'
+
+
+
+
+
+
+
+
+# class AlunoListView(ListView):
+#    model = Aluno
+#    template_name = 'paginas/formularioTemplate.html'
+#    context_object_name = 'alunos'
 
 # CreateView - Cria um novo aluno
 
 
-class AlunoCreateView(CreateView):
-    model = Aluno
-    template_name = 'paginas/cadastroTemplate.html'
-    fields = ['nome', 'treino', 'status']
-    success_url = reverse_lazy('index')
+#class AlunoCreateView(CreateView):
+#    model = Aluno
+#    template_name = 'paginas/cadastroTemplate.html'
+#    fields = ['nome', 'treino', 'status']
+#    success_url = reverse_lazy('index')
 
 # UpdateView - Atualiza os dados de um aluno
 
 
-class AlunoUpdateView(UpdateView):
-    model = Aluno
-    template_name = 'paginas/cadastroTemplate.html'
-    fields = ['nome', 'treino', 'status']
-    success_url = reverse_lazy('aluno_list')
+#class AlunoUpdateView(UpdateView):
+#    model = Aluno
+#    template_name = 'paginas/cadastroTemplate.html'
+#    fields = ['nome', 'treino', 'status']
+#    success_url = reverse_lazy('aluno_list')
 
 # DeleteView - Exclui um aluno
 
 
-class AlunoDeleteView(DeleteView):
-    model = Aluno
-    template_name = ''
-    success_url = reverse_lazy('')
+#class AlunoDeleteView(DeleteView):
+#    model = Aluno
+#    template_name = ''
+#    success_url = reverse_lazy('')
 
