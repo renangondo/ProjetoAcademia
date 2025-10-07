@@ -30,6 +30,7 @@ class Cidade(models.Model):
 class Professor(models.Model):
     nome = models.CharField(max_length=120, verbose_name="Nome do Professor")
     cpf = models.CharField(max_length=11, verbose_name="CPF do Professor")
+    telefone = models.CharField(max_length=11, verbose_name="Telefone do Cliente")
     cidade = models.ForeignKey(Cidade, on_delete=models.PROTECT, verbose_name="Cidade do Professor")
 
     usuario = models.ForeignKey('auth.User', on_delete=models.PROTECT, verbose_name="Usuário do Professor", related_name='professores_cadastrados')
@@ -51,8 +52,8 @@ class Aluno(models.Model):
     objetivo = models.CharField(max_length=400, verbose_name="Objetivo do Aluno")
     data_criacao = models.DateField(auto_now_add=True, verbose_name="Data de Criação")
     status = models.CharField(max_length=12,choices=STATUS,default='Ativo')
-    cidade = models.ForeignKey(Cidade, on_delete=models.PROTECT, verbose_name="Cidade do Aluno")
     sexo = models.CharField(max_length=10, verbose_name="Sexo do Aluno", choices=SEXO, default='Outros')
+    cidade = models.ForeignKey(Cidade, on_delete=models.PROTECT, verbose_name="Cidade do Aluno")
 
     professor = models.ForeignKey('auth.User', on_delete=models.PROTECT, verbose_name="Professor do Aluno", related_name='meus_alunos')
     usuario = models.OneToOneField('auth.User', on_delete=models.PROTECT, verbose_name="Usuário do Aluno", related_name='perfi_aluno')

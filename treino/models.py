@@ -40,6 +40,7 @@ class ExercicioTreino(models.Model):
     exercicio = models.ForeignKey(Exercicio, on_delete=models.PROTECT, verbose_name="Exercício")
     series = models.PositiveIntegerField(verbose_name="Número de Séries")
     repeticoes = models.PositiveIntegerField(verbose_name="Número de Repetições")
+    descanso = models.IntegerField(verbose_name="Descanso entre as séries")
 
     cadastrado_em = models.DateTimeField(auto_now_add=True, verbose_name="Cadastrado em")
     cadastrado_por = models.ForeignKey('auth.User', on_delete=models.PROTECT, verbose_name="Cadastrado por", related_name='exercicios_treinos_cadastrados')
