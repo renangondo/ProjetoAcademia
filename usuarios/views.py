@@ -1,5 +1,5 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Estado, Cidade, Aluno, Professor
+from .models import Estado, Cidade, Aluno
 from django.contrib.auth.models import User
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
@@ -44,11 +44,6 @@ class AlunoCreate(CreateView):
         url =  super().form_valid(form)
 
         return url
-
-class ProfessorCreate(CreateView):
-    model = Professor
-    fields = ['nome', 'cpf', 'cidade']
-    template_name = 'cadastros/form.html'
     
 ###################### UPDATE  ###########################################################################
 
@@ -73,11 +68,6 @@ class AlunoUpdate(UpdateView):
     success_url = reverse_lazy('listar_alunos')
 
 
-class ProfessorUpdate(UpdateView):
-    model = Professor
-    fields = ['nome', 'cpf', 'cidade']
-    template_name = 'cadastros/form.html'
-
 ###################### DELETE  ###########################################################################
 
 class EstadoDelete(DeleteView):
@@ -95,11 +85,6 @@ class AlunoDelete(DeleteView):
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('listar_alunos')
 
-class ProfessorDelete(DeleteView):
-    model = Professor
-    template_name = 'cadastros/form-excluir.html'
-    # success_url = '/'  # Redireciona para a página inicial após a exclusão
-
 ###################### LIST  ###########################################################################
 
 class EstadoList(ListView):
@@ -115,6 +100,6 @@ class AlunoList(ListView):
     model = Aluno
     template_name = 'cadastros/listas/aluno.html'
 
-class ProfessorList(ListView):
-    model = Professor
-    template_name = 'cadastros/listas/professor.html'
+    def get_queryset(self):
+        # Filtra os alunos para mostrar apenas os do professor logado
+        return Aluno.objects.filter(professor=self.request.user)

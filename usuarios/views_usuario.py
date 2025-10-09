@@ -70,3 +70,33 @@ class ProfessorUserCreate(CreateView):
 
         messages.success(self.request, 'Cadastro realizado com sucesso! Aguarde a ativação do seu usuário.')
         return redirect(self.success_url)
+
+###################### UPDATE  ###########################################################################
+
+class ProfessorUpdate(UpdateView):
+    model = Professor
+    fields = ['nome', 'cpf', 'cidade']
+    template_name = 'cadastros/form.html'
+    success_url = reverse_lazy('login')
+
+
+
+
+
+###################### DELETE  ###########################################################################
+
+class ProfessorDelete(DeleteView):
+    model = Professor
+    template_name = 'cadastros/confirm_delete.html'
+    success_url = reverse_lazy('listar_professor')
+
+
+###################### LIST  ###########################################################################
+
+class ProfessorList(ListView):
+    model = Professor
+    template_name = 'cadastros/listas/professor.html'
+
+
+
+
