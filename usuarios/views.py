@@ -101,5 +101,9 @@ class AlunoList(ListView):
     template_name = 'cadastros/listas/aluno.html'
 
     def get_queryset(self):
-        # Filtra os alunos para mostrar apenas os do professor logado
-        return Aluno.objects.filter(professor=self.request.user)
+        user = self.request.user
+        if not user.is_authenticated:
+            return Aluno.objects.none()
+        if user.is_superuser:
+            return Aluno.objects.all()
+        return Aluno.objects.filter(professor=user)

@@ -10,6 +10,11 @@ class TreinoCreate(CreateView):
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar_treino')
 
+    # Já Indentifica o usuário que está criando o treino
+    def form_valid(self, form):
+        form.instance.cadastrado_por = self.request.user
+        return super().form_valid(form)
+
 
 class TreinoUpdate(UpdateView):
     model = Treino
@@ -68,6 +73,11 @@ class ExercicioTreinoCreate(CreateView):
     fields = ['treino', 'exercicio', 'series', 'repeticoes']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar_exerciciotreino')
+
+    # Já Indentifica o usuário que está criando o treino
+    def form_valid(self, form):
+        form.instance.cadastrado_por = self.request.user
+        return super().form_valid(form)
 
 class ExercicioTreinoUpdate(UpdateView):
     model = ExercicioTreino
