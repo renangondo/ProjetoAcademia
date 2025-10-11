@@ -22,15 +22,7 @@ class AlunoUserCreate(CreateView):
         if User.objects.filter(username=cpf).exists():
             messages.error(self.request, 'Já existe um usuário com este CPF')
             return self.form_invalid(form)
-
-        # Cria o usuário (inativo por padrão)
-        user = User.objects.create_user(
-            username=cpf,
-            email=email,
-            password=senha,
-            is_active=False
-        )
-
+        
         # Salva o aluno vinculado ao usuário
         aluno = form.save(commit=False)
         aluno.usuario = user

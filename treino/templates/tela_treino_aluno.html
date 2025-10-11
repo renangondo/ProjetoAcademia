@@ -1,0 +1,111 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinos do Aluno - FitControl</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/aluno_treino.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Pequenas correções locais para exibição */
+        .treino-header { display:flex; justify-content:space-between; align-items:center; }
+        .treino-card { border:1px solid #e0e0e0; padding:12px; margin-bottom:12px; border-radius:6px; background:#fff }
+        .ex-list { margin-top:8px; }
+        .ex-item { padding:6px 8px; border-bottom:1px dashed #ddd }
+        .label { font-weight:600; color:#444 }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar (reaproveitado do modelo) -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-dumbbell"></i>
+                <span>FitControl</span>
+            </div>
+            <nav class="menu">
+                <div class="menu-section">
+                    <h4>Principal</h4>
+                    <ul>
+                        <li><a href="{% url 'index' %}"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="{% url 'listar_alunos' %}"><i class="fas fa-users"></i> Alunos</a></li>
+                    </ul>
+                </div>
+                <div class="menu-section">
+                    <h4>Cadastros</h4>
+                    <ul>
+                        <li><a href="{% url 'cadastrar_aluno' %}"><i class="fas fa-user-plus"></i> Novo Aluno</a></li>
+                        <li><a href="{% url 'cadastrar_medidas' %}"><i class="fas fa-ruler"></i> Medidas</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="user-profile">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Personal Trainer">
+                <div class="user-info">
+                     <strong>{{ request.user }}</strong>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="treino-header">
+                    <div>
+                        <h1>Treinos de {{ aluno.nome }}</h1>
+                        <p class="muted">Mostrando {{ treinos.count }} treino(s)</p>
+                    </div>
+                    <div>
+                        <a class="btn" href="{% url 'listar_alunos' %}"><i class="fas fa-arrow-left"></i> Voltar</a>
+                    </div>
+                </div>
+            </header>
+
+            <section class="content">
+                {% if treinos.exists %}
+                    {% for treino in treinos %}
+                        <div class="treino-card">
+                            <div style="display:flex; justify-content:space-between; align-items:center">
+                                <div>
+                                    <div class="label">{{ treino.nome_treino }}</div>
+                                    <small>Período: {{ treino.data_inicio }} {% if treino.data_fim %} - {{ treino.data_fim }}{% endif %}</small>
+                                </div>
+                                <div style="text-align:right">
+                                    <small>Cadastrado por: {{ treino.cadastrado_por }}</small><br>
+                                    <small>{{ treino.cadastrado_em }}</small>
+                                </div>
+                            </div>
+
+                            <div style="margin-top:8px">
+                                <p>{{ treino.descricao }}</p>
+                            </div>
+
+                            <div class="ex-list">
+                                <div class="label">Exercícios</div>
+                                {% with treino.exerciciotreino_set.all as exercicios %}
+                                    {% if exercicios %}
+                                        <div>
+                                            {% for ex in exercicios %}
+                                                <div class="ex-item">
+                                                    <strong>{{ ex.exercicio.nome }}</strong>
+                                                    <div>Series: {{ ex.series }} &nbsp; Repetições: {{ ex.repeticoes }} &nbsp; Descanso: {{ ex.descanso }}s</div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        <p class="muted">Nenhum exercício cadastrado para este treino.</p>
+                                    {% endif %}
+                                {% endwith %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Nenhum treino encontrado para este aluno.</p>
+                {% endif %}
+            </section>
+        </main>
+    </div>
+</body>
+</html>

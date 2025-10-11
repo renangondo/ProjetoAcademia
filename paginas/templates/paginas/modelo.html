@@ -81,6 +81,14 @@
                     <span class="badge">3</span>
                 </div>
             </header>
+            <!-- Exibir mensagens do Django (sucesso/erro) -->
+            {% if messages %}
+            <div class="messages-container">
+                {% for message in messages %}
+                    <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
         {%endblock%}
 
 

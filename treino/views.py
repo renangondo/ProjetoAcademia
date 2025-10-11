@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 from treino.models import Categoria, Exercicio, ExercicioTreino, Treino
+from django.shortcuts import get_object_or_404
+from usuarios.models import Aluno
 
 
 class TreinoCreate(CreateView):
@@ -89,6 +91,19 @@ class ExercicioTreinoDelete(DeleteView):
     model = ExercicioTreino
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('listar_exerciciotreino')
+
+
+def treinos_do_aluno(request, aluno_id):
+    """View simples que mostra os treinos de um aluno e os exercícios de cada treino."""
+    aluno = get_object_or_404(Aluno, pk=aluno_id)
+    treinos = Treino.objects.filter(aluno=aluno).order_by('-data_inicio')
+    # Pré-carrega os exercicios para cada treino
+    treinos = treinos.prefetch_related('exerciciotreino_set__exercicio')
+    context = {
+        'aluno': aluno,
+        'treinos': treinos,
+    }
+    return render(request, 'tela_treino_aluno.html', context)
 
     
 
