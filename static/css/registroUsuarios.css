@@ -1,0 +1,123 @@
+:root{
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --primary:#0984e3;
+  --muted:#6b7280;
+  --radius:10px;
+  --shadow:0 8px 30px rgba(16,24,40,0.06);
+}
+
+html,body{
+  height:100%;
+  background:var(--bg);
+  font-family: "Segoe UI", Arial, sans-serif;
+  color:#1f2937;
+  margin:0;
+  padding:0;
+}
+
+/* Container principal */
+.form-container{
+  max-width:900px;
+  margin:28px auto;
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:28px;
+  box-shadow:var(--shadow);
+  box-sizing:border-box;
+}
+
+/* Cabeçalho */
+.form-container h2{
+  margin:0 0 14px 0;
+  font-size:1.5rem;
+  color:var(--primary);
+  letter-spacing:0.2px;
+}
+
+/* Mensagens */
+.messages{ margin:14px 0; }
+.alert{
+  padding:10px 14px;
+  border-radius:8px;
+  margin-bottom:10px;
+  font-size:0.95rem;
+}
+.alert-success{ background:#e6fbf0; color:#0b6a3a; }
+.alert-error, .alert-danger{ background:#fff0f0; color:#9b1f1f; }
+
+/* Formulário: layout dos campos */
+form{ display:block; }
+.form-group{
+  display:flex;
+  gap:18px;
+  align-items:center;
+  margin-bottom:14px;
+}
+
+/* Label */
+.form-group label{
+  width:180px;
+  font-weight:600;
+  color:#344054;
+  font-size:0.95rem;
+}
+
+/* Campos (input, select, textarea) */
+.form-group input,
+.form-group select,
+.form-group textarea{
+  flex:1 1 auto;
+  padding:11px 14px;
+  border:1px solid #e6edf3;
+  border-radius:8px;
+  background:#fcfdff;
+  font-size:0.98rem;
+  outline:none;
+  transition:box-shadow .15s, border-color .15s;
+  box-sizing:border-box;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+  border-color:var(--primary);
+  box-shadow:0 6px 18px rgba(9,132,227,0.12);
+}
+
+/* Ajuda e erros por campo */
+.form-group .form-text{ display:block; font-size:0.85rem; color:var(--muted); margin-top:6px; }
+.form-group .alert-danger{ margin-top:6px; padding:8px; font-size:0.88rem; }
+
+/* Ações / botões */
+.form-actions{
+  display:flex;
+  gap:12px;
+  margin-top:8px;
+}
+.btn{
+  background:var(--primary);
+  color:#fff;
+  padding:10px 16px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  transition:background .12s, transform .06s;
+}
+.btn:hover{ background:#0b7de6; transform:translateY(-1px); }
+.btn.secondary{
+  background:transparent;
+  color:var(--muted);
+  border:1px solid #e6edf3;
+}
+
+/* Responsivo */
+@media (max-width:900px){
+  .form-container{ margin:18px; padding:18px; }
+  .form-group{ flex-direction:column; align-items:stretch; }
+  .form-group label{ width:100%; margin-bottom:6px; }
+  .form-actions{ justify-content:center; }
+}
+
+/* Pequenos ajustes visuais */
+input[required] { box-shadow: inset 0 0 0 2px transparent; }

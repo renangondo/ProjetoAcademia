@@ -14,6 +14,10 @@ class LandingPageView(TemplateView):
     template_name = 'paginas/landing_page.html'
 
 
+class LoginView(TemplateView):
+    template_name = 'paginas/login.html'
+
+
 
 
 

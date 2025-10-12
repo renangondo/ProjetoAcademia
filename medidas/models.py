@@ -1,6 +1,6 @@
 from django.db import models
 
-from paginas.models import Aluno
+from usuarios.models import Aluno
 
 
 # Create your models here.

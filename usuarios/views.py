@@ -5,6 +5,7 @@ from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib import messages
+from braces.views import GroupRequiredMixin
 
 # Create your views here.
 
@@ -25,7 +26,7 @@ class CidadeCreate(CreateView):
   
 class AlunoCreate(CreateView):
     model = Aluno
-    fields = ['nome','cpf' , 'idade', 'telefone',  'objetivo', 'cidade', 'status']
+    fields = ['nome', 'idade', 'cpf', 'telefone',  'objetivo', 'cidade', 'status', 'sexo']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar_alunos')
 

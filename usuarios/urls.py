@@ -33,7 +33,5 @@ urlpatterns = [
     path('registro/aluno/', AlunoUserCreate.as_view(), name='registro_aluno'),
     path('registro/professor/', ProfessorUserCreate.as_view(), name='registro_professor'),
 
-    # urls de autenticação
-    path('login/', auth_views.LoginView.as_view(template_name='cadastros/login/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='cadastros/login/logout.html'), name='logout'),
 ]
+
