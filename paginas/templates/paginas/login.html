@@ -17,12 +17,22 @@
         <form method="post">
             {% csrf_token %}
             <input type="hidden" name="next" value="/home/" />
-            {{ form.as_p }}
+            {% for field in form.visible_fields %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                    <div class="field-error">{{ field.errors|striptags }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
             <button type="submit"><i class="fas fa-sign-in-alt"></i> Entrar</button>
         </form>
-        {% if form.errors %}
+        {% if form.non_field_errors %}
             <div class="error">
-                Usuário ou senha inválidos.
+                {% for error in form.non_field_errors %}
+                    {{ error }}<br>
+                {% endfor %}
             </div>
         {% endif %}
     </div>

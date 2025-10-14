@@ -1,0 +1,9 @@
+{% extends 'paginas/modelo.html' %}
+
+{% block conteudo %}
+<div class="logout-container">
+    <h2>Logout realizado</h2>
+    <p>Sua sessão foi encerrada com sucesso.</p>
+    <a href="{% url 'login' %}" class="btn btn-primary">Voltar para o login</a>
+</div>
+{% endblock %}

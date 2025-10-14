@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="{% static 'css/lista.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
+
+
+
 <body>
     <div class="container">
         {%block menu%}
@@ -61,7 +65,9 @@
                 <div class="user-info">
                      <strong>{{ request.user }}</strong>
                 </div>
-                <button class="logout-btn"><i class="fas fa-sign-out-alt"></i></button>
+                <a href="{% url 'logout' %}" class="logout-btn" title="Sair">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
             </div>
         </aside>
         {%endblock%}
@@ -93,70 +99,9 @@
 
 
         {%block conteudo%}
-        <!-- Conteúdo principal -->
+        
             
-            <div class="stats-cards">
-                <div class="card">
-                    <div class="card-icon blue">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="card-info">
-                        <h3>Alunos Ativos</h3>
-                        <span>24</span>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-icon green">
-                        <i class="fas fa-clipboard-list"></i>
-                    </div>
-                    <div class="card-info">
-                        <h3>Treinos Hoje</h3>
-                        <span>8</span>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-icon orange">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <div class="card-info">
-                        <h3>Sessões Agendadas</h3>
-                        <span>5</span>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-icon red">
-                        <i class="fas fa-exclamation-circle"></i>
-                    </div>
-                    <div class="card-info">
-                        <h3>Renovações</h3>
-                        <span>3</span>
-                    </div>
-                </div>
-            </div>
             
-            <div class="content-grid">
-                <section class="recent-trainings">
-                    <h2>Treinos Recentes</h2>
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Aluno</th>
-                                    <th>Treino</th>
-                                    <th>Data</th>
-                                    <th>Status</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                        </table>
-                    </div>
-                </section>
-            </div>
-        </main>
         {%endblock%}
     </div>
 </body>
