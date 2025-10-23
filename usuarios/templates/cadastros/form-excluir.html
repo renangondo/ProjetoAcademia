@@ -13,7 +13,7 @@
 
     {% csrf_token %}
     <br>
-    <button type="submit" "{% url 'listar_estado' %}" class="btn btn-danger">Excluir</button>
+    <button type="submit" formaction="{% url 'listar_estado' %}" class="btn btn-danger">Excluir</button>
     <a href="{% url 'listar_estado' %}" class="btn-cancelar">Cancelar</a>
 </form>
 {% endblock %}
