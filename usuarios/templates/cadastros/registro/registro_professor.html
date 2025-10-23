@@ -15,23 +15,29 @@
     <div class="messages">
         {% for message in messages %}
         <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
-            {{ message }}
+            <i class="fas fa-info-circle"></i> {{ message }}
         </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if form.non_field_errors %}
+    <div class="alert alert-danger">
+        {% for error in form.non_field_errors %}
+            <div>{{ error }}</div>
         {% endfor %}
     </div>
     {% endif %}
 
     <form method="post">
         {% csrf_token %}
-        
         <!-- Campo de email (não faz parte do modelo, mas necessário para o User) -->
         <div class="form-group">
             <label for="id_email">Email:</label>
             <input type="email" name="email" id="id_email" class="form-control" required>
         </div>
 
-        <!-- Campos do modelo Professor -->
-        {% for field in form %}
+        {% for field in form.visible_fields %}
         <div class="form-group">
             <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
             {{ field }}
@@ -39,9 +45,7 @@
             <small class="form-text text-muted">{{ field.help_text }}</small>
             {% endif %}
             {% if field.errors %}
-            <div class="alert alert-danger">
-                {{ field.errors }}
-            </div>
+                <div class="field-error">{{ field.errors|striptags }}</div>
             {% endif %}
         </div>
         {% endfor %}
