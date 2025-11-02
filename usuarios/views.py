@@ -5,6 +5,7 @@ from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin 
 from braces.views import GroupRequiredMixin
 
 # Create your views here.
@@ -24,11 +25,12 @@ class CidadeCreate(CreateView):
     success_url = reverse_lazy('listar_cidade')
     
   
-class AlunoCreate(CreateView):
+class AlunoCreate(LoginRequiredMixin, GroupRequiredMixin, CreateView):
     model = Aluno
-    fields = ['nome', 'idade', 'cpf', 'telefone',  'objetivo', 'cidade', 'status', 'sexo']
+    fields = ['nome', 'idade', 'cpf', 'telefone', 'objetivo', 'cidade', 'status', 'sexo']
     template_name = 'cadastros/form.html'
-    success_url = reverse_lazy('listar_alunos')
+    success_url = reverse_lazy('listar_aluno')
+    group_required = ["Professor", "Administrador"]
 
     def form_valid(self, form):
         try:
@@ -51,21 +53,21 @@ class AlunoCreate(CreateView):
     
 ###################### UPDATE  ###########################################################################
 
-class EstadoUpdate(UpdateView):
+class EstadoUpdate(LoginRequiredMixin, UpdateView):
     model = Estado
     fields = ['nome', 'sigla']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar_estado')
 
 
-class CidadeUpdate(UpdateView):
+class CidadeUpdate(LoginRequiredMixin, UpdateView):
     model = Cidade
     fields = ['nome', 'estado']
     template_name = 'cadastros/form.html'
     success_url = reverse_lazy('listar_cidade')
 
 
-class AlunoUpdate(UpdateView):
+class AlunoUpdate(LoginRequiredMixin, UpdateView):
     model = Aluno
     fields = ['nome', 'cpf','idade', 'telefone', 'objetivo', 'cidade', 'status', 'professor']
     template_name = 'cadastros/form.html'
@@ -74,33 +76,33 @@ class AlunoUpdate(UpdateView):
 
 ###################### DELETE  ###########################################################################
 
-class EstadoDelete(DeleteView):
+class EstadoDelete(LoginRequiredMixin, DeleteView):
     model = Estado
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('listar_estado')
 
-class CidadeDelete(DeleteView):
+class CidadeDelete(LoginRequiredMixin, DeleteView):
     model = Cidade
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('listar_cidade')
 
-class AlunoDelete(DeleteView):
+class AlunoDelete(LoginRequiredMixin, DeleteView):
     model = Aluno
     template_name = 'cadastros/form-excluir.html'
     success_url = reverse_lazy('listar_alunos')
 
 ###################### LIST  ###########################################################################
 
-class EstadoList(ListView):
+class EstadoList(LoginRequiredMixin, ListView):
     model = Estado
     template_name = 'cadastros/listas/estado.html'
     
 
-class CidadeList(ListView):
+class CidadeList(LoginRequiredMixin, ListView):
     model = Cidade
     template_name = 'cadastros/listas/cidade.html'
 
-class AlunoList(ListView):
+class AlunoList(LoginRequiredMixin, ListView):
     model = Aluno
     template_name = 'cadastros/listas/aluno.html'
 

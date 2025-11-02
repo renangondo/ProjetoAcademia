@@ -5,10 +5,11 @@ from django.urls import reverse_lazy
 from .models import Aluno, Professor
 from django.shortcuts import redirect
 from django.contrib import messages
+from django.contrib.auth.models import Group
 
 class AlunoUserCreate(CreateView):
     model = Aluno
-    fields = ['nome', 'idade', 'cpf', 'telefone', 'objetivo', 'cidade', 'status', 'sexo']
+    fields = ['nome', 'idade', 'cpf', 'telefone', 'objetivo', 'cidade', 'sexo']
     template_name = 'cadastros/registro/registro_aluno.html'
     success_url = reverse_lazy('login')
 
@@ -20,22 +21,30 @@ class AlunoUserCreate(CreateView):
             messages.error(self.request, 'Já existe um usuário com este CPF.')
             return self.form_invalid(form)
 
-        user = User.objects.create_user(username=cpf, email=email or '', password=cpf)
-        # opcional: manter is_active=False até validação manual
-        # user.is_active = False
-        # user.save()
+        # Criar usuário
+        user = User.objects.create_user(
+            username=cpf,
+            email=email or '',
+            password=cpf,
+            is_active=False  # Aguarda ativação
+        )
 
+        # Salvar aluno
         aluno = form.save(commit=False)
         aluno.usuario = user
         aluno.save()
 
-        messages.success(self.request, 'Cadastro de aluno realizado com sucesso. Faça login.')
+        # Adicionar ao grupo
+        aluno_group = Group.objects.get(name='Aluno')
+        user.groups.add(aluno_group)
+
+        messages.success(self.request, 'Cadastro realizado! Aguarde a ativação.')
         return redirect(self.success_url)
 
 
 class ProfessorUserCreate(CreateView):
     model = Professor
-    fields = ['nome', 'cpf', 'telefone', 'cidade']
+    fields = ['nome', 'cpf', 'cidade']
     template_name = 'cadastros/registro/registro_professor.html'
     success_url = reverse_lazy('login')
 
@@ -47,14 +56,22 @@ class ProfessorUserCreate(CreateView):
             messages.error(self.request, 'Já existe um usuário com este CPF.')
             return self.form_invalid(form)
 
-        user = User.objects.create_user(username=cpf, email=email or '', password=cpf)
-        # opcional: user.is_active = False; user.save()
+        user = User.objects.create_user(
+            username=cpf,
+            email=email or '',
+            password=cpf,
+            is_active=False
+        )
 
         professor = form.save(commit=False)
         professor.usuario = user
         professor.save()
 
-        messages.success(self.request, 'Cadastro de professor realizado com sucesso. Faça login.')
+        # Adicionar ao grupo
+        professor_group = Group.objects.get(name='Professor')
+        user.groups.add(professor_group)
+
+        messages.success(self.request, 'Cadastro realizado! Aguarde a ativação.')
         return redirect(self.success_url)
 
 ###################### UPDATE  ###########################################################################
