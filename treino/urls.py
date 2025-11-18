@@ -1,8 +1,15 @@
 from django.urls import path
 from .views import (
-    CategoriaCreate, CategoriaDelete, CategoriaUpdate, ExercicioCreate, ExercicioDelete, ExercicioTreinoCreate, ExercicioTreinoDelete, ExercicioTreinoUpdate, 
-    ExercicioUpdate, TreinoCreate, TreinoDelete, TreinoUpdate, TreinoList, TreinosAlunoList, TreinosProfessorList, criar_treino_completo, DetalheTreinoView, TreinosDoAlunoView
+    CategoriaCreate, CategoriaDelete, CategoriaUpdate, 
+    ExercicioCreate, ExercicioDelete, ExercicioTreinoCreate, ExercicioTreinoDelete, ExercicioTreinoUpdate, 
+    ExercicioUpdate, TreinoCreate, TreinoDelete, TreinoUpdate, TreinoList, TreinosAlunoList, TreinosProfessorList, 
+    criar_treino_completo, DetalheTreinoView, TreinosDoAlunoView,
+    # Adicione estas importações:
+    exportar_treino_pdf, HistoricoTreinoList
 )
+
+# Importações das views de medidas para relatórios
+from medidas.views import RelatorioProgressoView, exportar_relatorio_pdf
 
 urlpatterns = [
     path('cadastrar/treino/', TreinoCreate.as_view(), name='cadastrar_treino'),
@@ -26,4 +33,14 @@ urlpatterns = [
     path('aluno/<int:aluno_id>/treinos/', TreinosDoAlunoView.as_view(), name='treinos_do_aluno'),
     path('aluno/<int:aluno_id>/novo-treino/', criar_treino_completo, name='criar_treino_completo'),
     path('treino/<int:pk>/detalhes/', DetalheTreinoView.as_view(), name='detalhes_treino'),
+    ###################################################################################
+    # Exportação PDF
+    path('treino/<int:treino_id>/pdf/', exportar_treino_pdf, name='exportar_treino_pdf'),
+    
+    # Histórico
+    path('treino/<int:treino_id>/historico/', HistoricoTreinoList.as_view(), name='historico_treino'),
+    
+    # Relatórios
+    path('aluno/<int:aluno_id>/relatorio/', RelatorioProgressoView.as_view(), name='relatorio_progresso'),
+    path('aluno/<int:aluno_id>/relatorio/pdf/', exportar_relatorio_pdf, name='exportar_relatorio_pdf'),
 ]

@@ -1,0 +1,45 @@
+{% extends 'paginas/modelo.html' %}
+{% load static %}
+
+{% block titulo %}Relatório de Progresso - {{ aluno.nome }}{% endblock %}
+
+{% block conteudo %}
+<div class="relatorio-container">
+    <div class="header">
+        <h2>📊 Relatório de Progresso - {{ aluno.nome }}</h2>
+        <a href="{% url 'exportar_relatorio_pdf' aluno.id %}" class="btn btn-primary">📄 Exportar PDF</a>
+    </div>
+    
+    {% if estadisticas %}
+    <div class="estatisticas">
+        <div class="stat-card">
+            <h3>{{ estatisticas.total_medidas }}</h3>
+            <p>Medidas Registradas</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ estatisticas.diferenca_peso|floatformat:1 }}kg</h3>
+            <p>Diferença de Peso</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ estatisticas.imc_atual|floatformat:1 }}</h3>
+            <p>IMC Atual</p>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Gráficos -->
+    {% if graficos.peso %}
+    <div class="grafico-section">
+        <h3>Evolução do Peso</h3>
+        <img src="data:image/png;base64,{{ graficos.peso }}" alt="Gráfico de Peso">
+    </div>
+    {% endif %}
+    
+    {% if graficos.imc %}
+    <div class="grafico-section">
+        <h3>Evolução do IMC</h3>
+        <img src="data:image/png;base64,{{ graficos.imc }}" alt="Gráfico de IMC">
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
