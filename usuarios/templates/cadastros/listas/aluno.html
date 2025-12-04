@@ -1,69 +1,100 @@
 {% extends 'paginas/modelo.html' %}
 {% load static %}
 
-
-
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/aluno_form.css' %}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block conteudo %}
-       <div class="content-grid">
-                <section class="recent-trainings">
-                    <h2>Listas de alunos</h2>
-                    <div class="table-container">
-                        <table>
-                                <tr>
-                                    <th>Aluno</th>
-                                    <th>Data</th>
-                                    <th>Status</th>
-                                </tr>
+<div class="content-grid">
+    <section class="recent-trainings">
+        <h2><i class="fas fa-users"></i> Lista de Alunos</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-user"></i> Aluno</th>
+                        <th><i class="fas fa-calendar"></i> Data Cadastro</th>
+                        <th><i class="fas fa-info-circle"></i> Status</th>
+                        <th><i class="fas fa-dumbbell"></i> Treinos</th>
+                        <th><i class="fas fa-cogs"></i> Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for aluno in object_list %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'treinos_do_aluno' aluno.id %}" class="aluno-nome">
+                                <i class="fas fa-user-circle"></i>
+                                {{ aluno.nome }}
+                            </a>
+                        </td>
+                        <td>
+                            <span class="date-badge">
+                                {{ aluno.data_criacao|date:"d/m/Y" }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="status-badge {% if aluno.status == 'Ativo' %}status-ativo{% else %}status-inativo{% endif %}">
+                                {{ aluno.status|default:"Ativo" }}
+                            </span>
+                        </td>
+                        <td>
+                            <a href="{% url 'treinos_do_aluno' aluno.id %}" class="btn-treinos">
+                                <i class="fas fa-dumbbell"></i>
+                                Ver Treinos
+                            </a>
+                        </td>
+                        <td>
+                            <div class="actions-container">
+                                <a href="{% url 'editar_aluno' aluno.id %}" class="btn-action btn-edit" title="Editar Aluno">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{% url 'excluir_aluno' aluno.id %}" class="btn-action btn-delete" title="Excluir Aluno" onclick="return confirm('Tem certeza que deseja excluir este aluno?')">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="empty-state">
+                            <i class="fas fa-user-slash"></i>
+                            <h4>Nenhum aluno cadastrado</h4>
+                            <p>Comece adicionando o primeiro aluno ao sistema</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+    <section class="quick-actions">
+        <h2>Ações Rápidas</h2>
+        <div class="actions-grid">
+            <a class="action-card" href="{% url 'cadastrar_aluno' %}">
+                <i class="fas fa-user-plus"></i>
+                <span>Novo Aluno</span>
+            </a>
+            <a class="action-card" href="{% url 'cadastrar_treino' %}">
+                <i class="fas fa-clipboard"></i>
+                <span>Criar Treino</span>
+            </a>
+            <a class="action-card" href="{% url 'cadastrar_medidas' %}">
+                <i class="fas fa-ruler"></i>
+                <span>Nova Medida</span>
+            </a>
+            <a class="action-card" href="{% url 'listar_treino' %}">
+                <i class="fas fa-chart-bar"></i>
+                <span>Relatórios</span>
+            </a>
+        </div>
+    </section>
+</div>
+{% endblock %}
 
-                             {% for aluno in object_list %}
-        <tr>
-            <td>{{ aluno.nome }}</td>
-            <td>{{ aluno.data_criacao }}</td>
-            <td>{{ aluno.status }}</td>
-            <td>
-                <div class="dropdown">
-                    <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-gear"></i>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="{% url 'editar_aluno' aluno.id %}"><i class="bi bi-pencil"></i> Editar</a></li>
-                        <li><a class="dropdown-item link-danger" href="{% url 'excluir_aluno' aluno.id %}"><i class="bi bi-trash"></i> Excluir</a></li>
-                    </ul>
-                </div>
-            </td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="4">Nenhum registro encontrado.</td>
-        </tr>
-        {% endfor %}
-                        </table>
-                    </div>
-                </section>
-                
-                <section class="quick-actions">
-                    <h2>Ações Rápidas</h2>
-                    <div class="actions-grid">
-                        <a class="action-card" href="{% url "cadastrar_aluno" %}">
-                            <i class="fas fa-user-plus"></i>
-                            <span>Novo Aluno</span>
-                        </a>
-                        <a class="action-card" href="{% url 'cadastrar_treino' %}">
-                            <i class="fas fa-clipboard"></i>
-                            <span>Criar Treino</span>
-                        </a>
-                        <a class="action-card" href="#">
-                            <i class="fas fa-calendar-plus"></i>
-                            <span>Agendar Exame</span>
-                        </a>
-                        <a class="action-card" href="#">
-                            <i class="fas fa-chart-bar"></i>
-                            <span>Relatórios</span>
-                        </a>
-                    </div>
-                    
+{% block extra_js %}
+<script src="{% static 'js/alunos.js' %}"></script>
 {% endblock %}

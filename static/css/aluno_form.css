@@ -125,6 +125,167 @@ input:focus, select:focus, textarea:focus {
     border-color: #ccc;
 }
 
+/* NOVOS ESTILOS PARA A LISTA DE ALUNOS */
+.table-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+}
+
+td {
+    padding: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+
+tr:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
+}
+
+.aluno-nome {
+    color: #2c3e50;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.aluno-nome:hover {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.aluno-nome i {
+    color: #667eea;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-ativo {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status-inativo {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.actions-container {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.btn-action {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+
+.btn-edit {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-edit:hover {
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+    color: white;
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    color: white;
+}
+
+.btn-delete:hover {
+    background: linear-gradient(135deg, #ff5252 0%, #d63031 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 107, 107, 0.3);
+    color: white;
+}
+
+.btn-treinos {
+    background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: all 0.2s ease;
+}
+
+.btn-treinos:hover {
+    background: linear-gradient(135deg, #00a085 0%, #019875 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 184, 148, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    color: #dee2e6;
+    margin-bottom: 1rem;
+}
+
+.date-badge {
+    background: #f8f9fa;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    color: #495057;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     .form-container {
@@ -142,5 +303,14 @@ input:focus, select:focus, textarea:focus {
     
     .submit-btn, .cancel-btn {
         justify-content: center;
+    }
+    
+    .actions-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .table-container {
+        overflow-x: auto;
     }
 }

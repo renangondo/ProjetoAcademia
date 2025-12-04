@@ -240,15 +240,17 @@ class DetalheTreinoView(LoginRequiredMixin, DetailView):
         context['exercicios_treino'] = ExercicioTreino.objects.filter(treino=self.object).select_related('exercicio', 'exercicio__categoria')
         return context
 
-# Esta view você já tinha, só melhorei um pouco:
+
 class TreinosDoAlunoView(LoginRequiredMixin, ListView):
     model = Treino
-    template_name = 'cadastros/listas/treinos_do_aluno.html'
+    template_name = 'listar_treino.html' 
     context_object_name = 'treinos'
     
     def get_queryset(self):
         aluno_id = self.kwargs['aluno_id']
-        return Treino.objects.filter(aluno_id=aluno_id).order_by('-cadastrado_em')
+        return Treino.objects.filter(aluno_id=aluno_id).select_related(
+            'cadastrado_por', 'aluno'
+        ).prefetch_related('exerciciotreino_set').order_by('-cadastrado_em')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
